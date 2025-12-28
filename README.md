@@ -10,9 +10,29 @@ To write a C Program to find area of rectangle using pointer.
 5.	Stop the program.
 
 ## PROGRAM
+```
+#include <stdio.h>
 
+int main() {
+    float length, width, area;
+    float *lptr = &length, *wptr = &width, *aptr = &area;
+
+    // Read length and width
+    scanf("%f %f", lptr, wptr);
+
+    // Calculate area using pointers
+    *aptr = (*lptr) * (*wptr);
+
+    // Print area
+    printf("Area of rectangle = %.2f", *aptr);
+
+    return 0;
+}
+```
 ## OUTPUT
-		       	
+<img width="566" height="246" alt="image" src="https://github.com/user-attachments/assets/4bcc9fde-48dd-4cda-ae6c-3f37baea68ca" />
+
+	       	
 
 
 ## RESULT
@@ -34,8 +54,43 @@ To write a C Program to print 'WELCOME' using malloc() and free().
 6.	Stop the program.
 
 ## PROGRAM
+```
+#include <stdio.h>
+#include <stdlib.h>
 
+int main() {
+    char *str;
+    int i;
+
+    // Allocate memory for 8 characters (7 + 1 for null terminator)
+    str = (char *)malloc(8 * sizeof(char));
+
+    if (str == NULL) {
+        printf("Memory not allocated.\n");
+        return 1;
+    }
+
+    // Assign characters
+    str[0] = 'W';
+    str[1] = 'E';
+    str[2] = 'L';
+    str[3] = 'C';
+    str[4] = 'O';
+    str[5] = 'M';
+    str[6] = 'E';
+    str[7] = '\0'; // null terminator
+
+    // Print the string
+    printf("%s", str);
+
+    // Free allocated memory
+    free(str);
+
+    return 0;
+}
+```
 ## OUTPUT
+<img width="452" height="185" alt="image" src="https://github.com/user-attachments/assets/25b56937-91b4-49bb-a706-a778b166a37f" />
 
 
 
@@ -60,9 +115,46 @@ To write a C Program to store the student information and display it using struc
 4.	Stop the program.
 
 ## PROGRAM
+```
+#include <stdio.h>
 
+// Define the structure
+struct Student {
+    int id;
+    char name[50];
+    int age;
+    float marks;
+};
+
+int main() {
+    struct Student s;
+
+    // Read student information
+    printf("Enter student ID: ");
+    scanf("%d", &s.id);
+
+    printf("Enter student name: ");
+    scanf(" %[^\n]", s.name);  // To read full name with spaces
+
+    printf("Enter student age: ");
+    scanf("%d", &s.age);
+
+    printf("Enter student marks: ");
+    scanf("%f", &s.marks);
+
+    // Display student information
+    printf("\nStudent Information:\n");
+    printf("ID: %d\n", s.id);
+    printf("Name: %s\n", s.name);
+    printf("Age: %d\n", s.age);
+    printf("Marks: %.2f\n", s.marks);
+
+    return 0;
+}
+```
 
 ## OUTPUT
+<img width="420" height="433" alt="image" src="https://github.com/user-attachments/assets/2f5a2b2d-8b06-4731-90c6-3ed7364ec05c" />
 
 
 ## RESULT
@@ -87,11 +179,60 @@ To write a C Program to read and store the data of 3 employees and calculate the
 5.	Stop the program.
 
 ## PROGRAM
+```
+#include <stdio.h>
 
+struct Employee {
+    int id;
+    char name[50];
+    float basic, hra, da, gross;
+};
+
+int main() {
+    struct Employee e[3];
+    int i;
+
+    // Read details of 3 employees
+    for (i = 0; i < 3; i++) {
+        printf("\nEnter details of Employee %d\n", i + 1);
+
+        printf("ID: ");
+        scanf("%d", &e[i].id);
+
+        printf("Name: ");
+        scanf(" %[^\n]", e[i].name);
+
+        printf("Basic Salary: ");
+        scanf("%f", &e[i].basic);
+
+        printf("HRA: ");
+        scanf("%f", &e[i].hra);
+
+        printf("DA: ");
+        scanf("%f", &e[i].da);
+
+        // Calculate Gross Salary
+        e[i].gross = e[i].basic + e[i].hra + e[i].da;
+    }
+
+    // Display employee details with gross salary
+    printf("\nEmployee Details with Gross Salary:\n");
+    for (i = 0; i < 3; i++) {
+        printf("\nEmployee %d\n", i + 1);
+        printf("ID: %d\n", e[i].id);
+        printf("Name: %s\n", e[i].name);
+        printf("Gross Salary: %.2f\n", e[i].gross);
+    }
+
+    return 0;
+}
+```
 
  ## OUTPUT
 
- 
+<img width="362" height="651" alt="image" src="https://github.com/user-attachments/assets/bcc8a671-059e-4608-9881-f8b826cf3495" />
+ <img width="382" height="545" alt="image" src="https://github.com/user-attachments/assets/ba679f03-28cd-4618-9a80-f4aab74f4995" />
+
 
 ## RESULT
 
@@ -134,9 +275,46 @@ Step 7: Output Loop (i = 0 to 1):
 Step 8: End the program.
 
 ## PROGRAM
+```
+#include <stdio.h>
 
+struct Student {
+    int id;
+    char name[50];
+    float marks[3];
+};
+
+int main() {
+    struct Student s;
+    float total = 0, avg;
+    int i;
+
+    // Read student details
+    printf("Enter Student ID: ");
+    scanf("%d", &s.id);
+
+    printf("Enter Student Name: ");
+    scanf(" %[^\n]", s.name);
+
+    printf("Enter marks in 3 subjects:\n");
+    for (i = 0; i < 3; i++) {
+        scanf("%f", &s.marks[i]);
+        total += s.marks[i];
+    }
+
+    // Calculate average
+    avg = total / 3;
+
+    // Display result
+    printf("Total = %.2f\n", total);
+    printf("Average = %.2f\n", avg);
+
+    return 0;
+}
+```
 
 ## OUTPUT
+<img width="462" height="382" alt="image" src="https://github.com/user-attachments/assets/f7163004-355d-4c45-8f71-d2be2fd40f12" />
 
  
 
